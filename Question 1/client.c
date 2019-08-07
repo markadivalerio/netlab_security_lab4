@@ -7,7 +7,7 @@
 #include <string.h> 
 #include <sys/socket.h> 
 #define MAX 80 
-#define PORT 8080 
+#define PORT 12000
 #define SA struct sockaddr 
 void func(int sockfd) 
 { 
@@ -15,7 +15,7 @@ void func(int sockfd)
     int n; 
     for (;;) { 
         bzero(buff, sizeof(buff)); 
-        printf("Enter the string : "); 
+        printf("Input lowercase Sentence: "); 
         n = 0; 
         while ((buff[n++] = getchar()) != '\n') 
             ; 
@@ -47,7 +47,7 @@ int main()
   
     // assign IP, PORT 
     servaddr.sin_family = AF_INET; 
-    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1"); 
+    servaddr.sin_addr.s_addr = inet_addr("127.0.0.2"); 
     servaddr.sin_port = htons(PORT); 
   
     // connect the client socket to server socket 
