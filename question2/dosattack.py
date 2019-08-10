@@ -1,6 +1,6 @@
 from scapy.all import *
 
-source = ["8.8.8.8", 80]
+source = ["127.0.0.3", 80]
 dest = ["127.0.0.2", 12000]
 i = 1
 
