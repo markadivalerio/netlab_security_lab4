@@ -6,7 +6,8 @@ import requests
 
 sport = random.randint(54800, 54899)
 #addr = "www.baiwanzhan.com"
-ip = IP(dst="www.baiwanzhan.com")
+ip = IP(dst="www.google.com")
+#ip = IP(dst="www.baiwanzhan.com")
 addr = "106.119.182.141"
 dport = 80
 
@@ -37,6 +38,7 @@ search = search_a + search_b
 getStr = "GET /service/site/search.aspx?query=%E6%B3%95%E8%BD%AE HTTP/1.1\r\n"
 getStr1 = "GET /service/site/search.aspx?query=he"
 getStr2 = "llo HTTP/1.1\r\n"
+getStr3 = "GET /service/site/search.aspx?query=hello HTTP/1.1\r\n"
 partialStr1 = "GET /service/site/search.aspx?query=%E6%B3%95"
 partialStr2 = "%E8%BD%AE HTTP/1.1\r\n"
 #request = IP(dst='www.baiwanzhan.com') / TCP(dport=80, sport=syn_ack[TCP].dport, seq=syn_ack[TCP].ack, ack=syn_ack[TCP].seq + 1, flags='A') / getStr
@@ -64,13 +66,14 @@ def main():
     ack, seq = handshake()
     print(ack)
     print(seq)
-    req1 = ip / TCP(dport=dport, sport=sport, seq=ack, ack=seq, flags='PA') / getStr1
-    res1 = sr1(req1)
-    seq1 = res1[TCP].seq+1
-    ack1 = res1[TCP].ack
-    req2 = ip / TCP(dport=dport, sport=sport, seq=ack1, ack=seq1, flags='PA') / getStr2
-
-    send(req2)
+    req = ip / TCP(dport=dport, sport=sport, seq=ack, ack=seq, flags='PA') / getStr3
+    res = sr(req) 
+#    req1 = ip / TCP(dport=dport, sport=sport, seq=ack, ack=seq, flags='PA') / getStr1
+#    res1 = sr1(req1)
+#    seq1 = res1[TCP].seq+1
+#    ack1 = res1[TCP].ack
+#    req2 = ip / TCP(dport=dport, sport=sport, seq=ack1, ack=seq1, flags='PA') / getStr2
+#    send(req2)
     
     #print('HERE 5')
     #res = send([req1,req2])
