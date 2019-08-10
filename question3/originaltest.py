@@ -103,7 +103,7 @@ class TcpHandshake(object):
         return self.handle_recv(response)
 
     def send_finack(self, pkt):
-        logger.debug("SND: FIN+ACK")
+#        logger.debug("SND: FIN+ACK")
         self.l4[TCP].flags = "FA"
         self.l4[TCP].ack = pkt[TCP].seq+1
         self.seq_next = self.l4[TCP].seq + 1
@@ -123,11 +123,8 @@ if __name__=='__main__':
     logging.basicConfig(level=logging.INFO)
     logger.setLevel(logging.INFO)
     conf.verb = 0
-    tcp_hs = TcpHandshake(("106.119.182.141",80))
-#    tcp_hs = TcpHandshake(("www.baiwanzhan.com",80))
+    tcp_hs = TcpHandshake(("www.baiwanzhan.com",80))
     tcp_hs.start()
-    print repr(tcp_hs.send_data("GET /service/site/search.aspx?query=hello HTTP/1.1\r\nHost: www.baiwanzhan.com\r\n"
-))
-    #print repr(tcp_hs.send_data("INTENTIONAL BAD REQUEST\r\n\r\n\r\n"))
-    #tcp_hs.send_fin()
+    print repr(tcp_hs.send_data("INTENTIONAL BAD REQUEST\r\n\r\n\r\n"))
+    tcp_hs.send_fin()
 
