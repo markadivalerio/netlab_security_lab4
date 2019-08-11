@@ -14,7 +14,7 @@
 #define SA struct sockaddr 
   
 // Function designed for chat between client and server. 
-void func(int sockfd) 
+void uppercase_messages(int sockfd) 
 { 
     char buff[MAX]; 
     char upper[MAX];
@@ -52,13 +52,11 @@ int main()
   
     // assign IP, PORT 
     servaddr.sin_family = AF_INET; 
-    //servaddr.sin_addr.s_addr = htonl(INADDR_ANY); // htonl("127.0.0.2"); 
-    servaddr.sin_addr.s_addr = inet_addr("127.0.0.2"); //htonl(INADDR_ANY); 
+    servaddr.sin_addr.s_addr = inet_addr("127.0.0.2");
     servaddr.sin_port = htons(PORT); 
   
     // Binding newly created socket to given IP and verification 
     if ((bind(sockfd, (SA*)&servaddr, sizeof(servaddr))) != 0) { 
-    //if((bind(sockfd, (SA*)&"127.0.0.1", sizeof("127.0.0.1"))) != 0) {
         printf("socket bind failed...\n"); 
         exit(0); 
     } 
@@ -84,8 +82,8 @@ int main()
         printf("server acccept the client...\n"); 
   
     // Function for chatting between client and server 
-    func(connfd); 
+    uppercase_messages(connfd);
   
     // After chatting close the socket 
     close(sockfd); 
-} 
+}

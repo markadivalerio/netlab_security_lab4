@@ -9,7 +9,8 @@
 #define MAX 80 
 #define PORT 12000
 #define SA struct sockaddr 
-void func(int sockfd) 
+
+void send_to_server(int sockfd) 
 { 
     char buff[MAX]; 
     int n; 
@@ -59,8 +60,8 @@ int main()
         printf("connected to the server..\n"); 
   
     // function for chat 
-    func(sockfd); 
+    send_to_server(sockfd); 
   
     // close the socket 
     close(sockfd); 
-} 
+}
