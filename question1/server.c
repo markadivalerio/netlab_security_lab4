@@ -1,6 +1,6 @@
 #include <arpa/inet.h>
-#include <fcntl.h> // for open
-#include <unistd.h> // for close
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <netdb.h> 
 #include <netinet/in.h> 
