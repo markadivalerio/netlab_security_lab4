@@ -29,7 +29,8 @@ def partial_handshake():
         sport = random.randint(1024,65535)
         seq = random.randint(1000,99999999)
         syn_pkg = IP(src=srcip, dst=addr)/TCP(sport=sport, dport=dport, flags='S', seq=seq)
-        send(syn_pkg)
+        #sr1(syn_pkg)
+	send(syn_pkg)
         #syn_pkg.seq += 1
         #s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #        s.bind((srcip,sport))
